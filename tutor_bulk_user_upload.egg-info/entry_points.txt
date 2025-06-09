@@ -1,0 +1,2 @@
+[tutor.plugin.v1]
+bulk_user_upload = tutorbulkuserupload.plugin

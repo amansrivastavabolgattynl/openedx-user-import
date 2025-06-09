@@ -1,0 +1,57 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block title %}Bulk User Upload{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1>Bulk User Upload</h1>
+    
+    <div class="module">
+        <h2>Upload CSV File</h2>
+        
+        <div class="form-row">
+            <p><strong>CSV Format Requirements:</strong></p>
+            <ul>
+                <li>Required columns: username, email, first_name, last_name</li>
+                <li>Maximum file size: 10MB</li>
+                <li>Maximum users per file: 1000</li>
+                <li>File encoding: UTF-8</li>
+            </ul>
+        </div>
+        
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            {% if form.errors %}
+                <div class="errornote">
+                    <p>Please correct the following errors:</p>
+                    {{ form.errors }}
+                </div>
+            {% endif %}
+            
+            <div class="form-row">
+                <div>
+                    <label for="{{ form.csv_file.id_for_label }}">{{ form.csv_file.label }}:</label>
+                    {{ form.csv_file }}
+                    {% if form.csv_file.help_text %}
+                        <p class="help">{{ form.csv_file.help_text }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="submit-row">
+                <input type="submit" value="Upload" class="default" />
+                <a href="{% url 'bulk_user_upload:job_list' %}" class="button">View Upload History</a>
+            </div>
+        </form>
+    </div>
+    
+    <div class="module">
+        <h2>Sample CSV Format</h2>
+        <pre>username,email,first_name,last_name
+john_doe,john@example.com,John,Doe
+jane_smith,jane@example.com,Jane,Smith</pre>
+    </div>
+</div>
+{% endblock %}

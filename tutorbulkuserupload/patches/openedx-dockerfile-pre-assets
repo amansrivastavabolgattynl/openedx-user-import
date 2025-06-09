@@ -1,0 +1,1 @@
+COPY --chown=app:app bulk_user_upload /openedx/edx-platform/bulk_user_upload

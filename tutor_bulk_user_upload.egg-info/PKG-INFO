@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: tutor-bulk-user-upload
+Version: 1.0.0
+Summary: Bulk user upload plugin for Open edX
+Requires-Dist: tutor>=14.0.0
+Requires-Dist: pandas>=1.3.0
+Requires-Dist: celery>=5.0.0
+Dynamic: requires-dist
+Dynamic: summary
